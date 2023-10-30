@@ -1,12 +1,10 @@
-
-
 #1.
 def fibonacci(n):
     fib_list = [0, 1]
     while len(fib_list) < n:
         next_num = fib_list[-1] + fib_list[-2]
         fib_list.append(next_num)
-    return fib_list[:n]
+    return fib_list
 
 result = fibonacci(10)
 print(f"Ex. 1:\n{result}\n")
@@ -66,8 +64,8 @@ print(f"Ex. 4:\n{composed_song}\n")
 
 
 #5.
-def replace_below_diagonal(matrix):
-    result = [row[:] for row in matrix]
+def replace_below_principal_diagonal(matrix):
+    result = matrix
     for i in range(len(result)):
         for j in range(len(result[i])):
             if j < i:
@@ -80,7 +78,7 @@ matrix = [
     [7, 8, 9]
 ]
 
-new_matrix = replace_below_diagonal(matrix)
+new_matrix = replace_below_principal_diagonal(matrix)
 print("Ex. 5:")
 for row in new_matrix:
     print(row)
@@ -120,10 +118,8 @@ def find_palindromes(numbers):
     for num in numbers:
         if is_palindrome(num):
             palindromes.append(num)
-
     if not palindromes:
         return (0, None)
-
     max_palindrome = max(palindromes)
     return (len(palindromes), max_palindrome)
 
@@ -139,7 +135,7 @@ def generate_ascii_lists(x=1, strings=[], flag=True):
         char_list = []
         if flag:
             for c in string:
-                if(ord(c)) % x == 0:
+                if ord(c) % x == 0:
                     char_list.append(c)
         else:
             for c in string:
@@ -218,7 +214,6 @@ def group_by_rhyme(words):
             rhyme_dict[rhyme] = [word]
         else:
             rhyme_dict[rhyme].append(word)
-
     return list(rhyme_dict.values())
 
 words = ['ana', 'banana', 'carte', 'arme', 'parte']
