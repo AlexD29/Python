@@ -151,10 +151,10 @@ matrix2.set_element(2, 2, 18)
 
 matrix.transpose()
 result_matrix = matrix.multiply(matrix2)
-print("\nResult of Matrix Multiplication:")
+print("\nMultiplication:")
 print(result_matrix)
 
 matrix.apply_transformation(lambda x: x * 2)
-print("\nMatrix after applying transformation (multiply by 2):")
+print("\nMatrix after multiplying by 2:")
 print(matrix)
 
