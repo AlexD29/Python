@@ -81,7 +81,12 @@ class Matrix:
     def __init__(self, n, m):
         self.n = n
         self.m = m
-        self.matrix = [[0 for _ in range(m)] for _ in range(n)]
+        self.matrix = []
+        for i in range(n):
+            row = []
+            for j in range(m):
+                row.append(0)
+            self.matrix.append(row)
 
     def get_element(self, i, j):
         return self.matrix[i][j]
@@ -90,18 +95,20 @@ class Matrix:
         self.matrix[i][j] = value
 
     def transpose(self):
-        self.matrix = [[self.matrix[j][i] for j in range(self.n)] for i in range(self.m)]
-        aux = self.n
-        self.n = self.m
-        self.m = aux
+        transposed_matrix = []
+        for i in range(self.m):
+            row = []
+            for j in range(self.n):
+                row.append(self.matrix[j][i])
+            transposed_matrix.append(row)
+        self.matrix = transposed_matrix
+        self.n, self.m = self.m, self.n
 
     def multiply(self, other):
         if self.m != other.n:
             raise ValueError("Number of columns in the first matrix must be equal to the number of rows in the second "
                              "matrix")
-
         result = Matrix(self.n, other.m)
-
         for i in range(self.n):
             for j in range(other.m):
                 for k in range(self.m):
@@ -109,10 +116,10 @@ class Matrix:
 
         return result
 
-    def apply_transformation(self, transformation):
+    def apply_transformation(self, transform):
         for i in range(self.n):
             for j in range(self.m):
-                self.matrix[i][j] = transformation(self.matrix[i][j])
+                self.matrix[i][j] = transform(self.matrix[i][j])
 
     def __str__(self):
         return '\n'.join([' '.join(map(str, row)) for row in self.matrix])
@@ -132,7 +139,7 @@ matrix.set_element(2, 2, 9)
 print("Matrix:")
 print(matrix)
 
-print(f"Element at (1, 2): {matrix.get_element(1, 2)}")
+print(f"matrix[1][2]: {matrix.get_element(1, 2)}")
 
 matrix.transpose()
 print("\nTransposed Matrix:")
