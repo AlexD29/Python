@@ -50,9 +50,8 @@ def compare_dicts(dict1, dict2):
                 return False
         return True
     else:
-        return dict1 == dict2
+        return dict1 is dict2
 
-# Example usage
 dict1 = {'a': [1, 2, {'x': 3}], 'b': {'c': 4}}
 dict2 = {'a': [1, 2, {'x': 3}], 'b': {'c': 4}}
 result = compare_dicts(dict1, dict2)
@@ -149,9 +148,12 @@ print(f"Ex. 10:\n{result}\n")
 
 #11.
 def my_function(*args, **args2):
+    count = 0
     args_set = set(args)
-    matching_count = sum(1 for arg in args_set if arg in args2.values())
-    return matching_count
+    for arg in args_set:
+        if arg in args2.values():
+            count += 1
+    return count
 
 result = my_function(1, 2, 3, 4, x=1, y=2, z=3, w=5)
 print(f"Ex. 11:\n{result}")
