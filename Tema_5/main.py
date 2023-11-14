@@ -114,15 +114,11 @@ class Vehicle:
 
 class Car(Vehicle):
     def calculate_mileage(self):
-        # Placeholder method for calculating mileage for cars
-        # You can implement your own calculation logic here
-        return 30  # Example: assuming 30 miles per gallon
+        return 30
 
 class Motorcycle(Vehicle):
     def calculate_mileage(self):
-        # Placeholder method for calculating mileage for motorcycles
-        # You can implement your own calculation logic here
-        return 50  # Example: assuming 50 miles per gallon
+        return 50
 
 class Truck(Vehicle):
     def __init__(self, make, model, year, towing_capacity):
@@ -133,18 +129,18 @@ class Truck(Vehicle):
         return self.towing_capacity
 
 print("\nEx. 3:")
-car = Car("Toyota", "Camry", 2022)
+car = Car("Dacia", "1310", 1990)
 car_mileage = car.calculate_mileage()
 
-motorcycle = Motorcycle("Honda", "CBR600RR", 2022)
+motorcycle = Motorcycle("Harley-Davidson", "1", 2022)
 motorcycle_mileage = motorcycle.calculate_mileage()
 
-truck = Truck("Ford", "F-150", 2022, 10000)
+truck = Truck("Volvo", "B40", 2022, 10000)
 towing_capacity = truck.calculate_towing_capacity()
 
 print(f"Car - Make: {car.make}, Model: {car.model}, Year: {car.year}, Mileage: {car_mileage} mpg")
 print(f"Motorcycle - Make: {motorcycle.make}, Model: {motorcycle.model}, Year: {motorcycle.year}, Mileage: {motorcycle_mileage} mpg")
-print(f"Truck - Make: {truck.make}, Model: {truck.model}, Year: {truck.year}, Towing Capacity: {towing_capacity} lbs")
+print(f"Truck - Make: {truck.make}, Model: {truck.model}, Year: {truck.year}, Towing Capacity: {towing_capacity} kg")
 
 
 #4
@@ -180,13 +176,13 @@ class Salesperson(Employee):
         print(f"Salesperson {self.name} made a sale of {amount}. Commission: {commission}")
 
 print("\nEx. 4:")
-manager = Manager("John Doe", 1001, 80000)
-manager.assign_task("Prepare quarterly report")
+manager = Manager("Mihai Bordea", 1001, 80000)
+manager.assign_task("Process 10 CVs")
 
-engineer = Engineer("Jane Smith", 1002, 70000)
+engineer = Engineer("Radu Naum", 1002, 70000)
 engineer.code()
 
-salesperson = Salesperson("Bob Johnson", 1003, 60000, 0.1)
+salesperson = Salesperson("Wolf of Wallstreet", 1003, 60000, 0.1)
 salesperson.make_sale(10000)
 
 
@@ -273,17 +269,17 @@ class DVD(LibraryItem):
         return f"{super().display_info()}\nDuration: {self.duration} minutes"
 
 class Magazine(LibraryItem):
-    def __init__(self, title, issue_number, item_id, checked_out=False):
+    def __init__(self, title, number, item_id, checked_out=False):
         super().__init__(title, "N/A", item_id, checked_out)
-        self.issue_number = issue_number
+        self.number = number
 
     def display_info(self):
-        return f"{super().display_info()}\nIssue Number: {self.issue_number}"
+        return f"{super().display_info()}\nNumber: {self.number}"
 
 print("\nEx. 6:")
-book = Book("The Catcher in the Rye", "J.D. Salinger", 101, 234)
+book = Book("America", "Franz Kafka", 101, 234)
 dvd = DVD("Inception", "Christopher Nolan", 201, 148)
-magazine = Magazine("National Geographic", 315, 301)
+magazine = Magazine("Playboy", 315, 301)
 
 print(book.display_info())
 print(dvd.display_info())

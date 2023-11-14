@@ -88,10 +88,10 @@ class Matrix:
                 row.append(0)
             self.matrix.append(row)
 
-    def get_element(self, i, j):
+    def get(self, i, j):
         return self.matrix[i][j]
 
-    def set_element(self, i, j, value):
+    def set(self, i, j, value):
         self.matrix[i][j] = value
 
     def transpose(self):
@@ -106,8 +106,7 @@ class Matrix:
 
     def multiply(self, other):
         if self.m != other.n:
-            raise ValueError("Number of columns in the first matrix must be equal to the number of rows in the second "
-                             "matrix")
+            raise ValueError("Number of columns must be equal to the number of rows")
         result = Matrix(self.n, other.m)
         for i in range(self.n):
             for j in range(other.m):
@@ -122,43 +121,40 @@ class Matrix:
                 self.matrix[i][j] = transform(self.matrix[i][j])
 
     def __str__(self):
-        return '\n'.join([' '.join(map(str, row)) for row in self.matrix])
+        result = ""
+        for row in self.matrix:
+            result += ' '.join(map(str, row)) + '\n'
+        return result
 
 
 print(f"Ex. 3:")
-matrix = Matrix(3, 3)
-matrix.set_element(0, 0, 1)
-matrix.set_element(0, 1, 2)
-matrix.set_element(0, 2, 3)
-matrix.set_element(1, 0, 4)
-matrix.set_element(1, 1, 5)
-matrix.set_element(1, 2, 6)
-matrix.set_element(2, 0, 7)
-matrix.set_element(2, 1, 8)
-matrix.set_element(2, 2, 9)
-print("Matrix:")
+matrix = Matrix(2, 3)
+matrix.set(0, 0, 1)
+matrix.set(0, 1, 2)
+matrix.set(0, 2, 3)
+matrix.set(1, 0, 4)
+matrix.set(1, 1, 5)
+matrix.set(1, 2, 6)
+print("matrix:")
 print(matrix)
 
-print(f"matrix[1][2]: {matrix.get_element(1, 2)}")
+print(f"matrix[1][2]: {matrix.get(1, 2)}")
 
 matrix.transpose()
 print("\nTransposed Matrix:")
 print(matrix)
 
-matrix2 = Matrix(3, 3)
-matrix2.set_element(0, 0, 10)
-matrix2.set_element(0, 1, 11)
-matrix2.set_element(0, 2, 12)
-matrix2.set_element(1, 0, 13)
-matrix2.set_element(1, 1, 14)
-matrix2.set_element(1, 2, 15)
-matrix2.set_element(2, 0, 16)
-matrix2.set_element(2, 1, 17)
-matrix2.set_element(2, 2, 18)
+matrix2 = Matrix(3, 2)
+matrix2.set(0, 0, 10)
+matrix2.set(0, 1, 11)
+matrix2.set(1, 0, 13)
+matrix2.set(1, 1, 14)
+matrix2.set(2, 0, 13)
+matrix2.set(2, 1, 14)
 
 matrix.transpose()
 result_matrix = matrix.multiply(matrix2)
-print("\nMultiplication:")
+print("\nmatrix1 x matrix2:")
 print(result_matrix)
 
 matrix.apply_transformation(lambda x: x * 2)
